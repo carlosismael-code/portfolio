@@ -1,0 +1,30 @@
+# Template de referência (copyright de terceiros)
+index.html
+
+# Foto original duplicada (já existe em portfolio-site/public/photo.jpg)
+photo_*.jpg
+
+# Configuração local do opencode
+.opencode/
+opencode.json
+
+# Documento de processo interno
+PRD.md
+
+# Dependências e build
+node_modules/
+dist/
+.astro/
+
+# IDE
+.vscode/
+
+# Sistema
+.DS_Store
+Thumbs.db
+
+# Screenshots de debug
+previews/
+
+# Scripts auxiliares
+scripts/
