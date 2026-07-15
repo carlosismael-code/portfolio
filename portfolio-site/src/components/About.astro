@@ -1,0 +1,38 @@
+---
+import SectionHeading from '~/components/SectionHeading.astro';
+import { ABOUT } from '~/consts';
+---
+
+<section id="about" class="page-section page-section--alt" aria-labelledby="about-title">
+  <div class="container-page relative">
+    <span class="section-number" aria-hidden="true"><span>02</span></span>
+
+    <SectionHeading
+      title="Quem sou eu"
+      number="02"
+    />
+
+    <div class="reveal max-w-2xl space-y-5 text-[var(--fg-secondary)] font-display text-[var(--text-md)] leading-relaxed">
+      {
+        ABOUT.paragraphs.map((paragraph) => (
+          <p>{paragraph}</p>
+        ))
+      }
+    </div>
+
+    <div class="reveal-stagger mt-12 grid grid-cols-2 sm:grid-cols-3 gap-3 max-w-2xl">
+      <div class="border border-[var(--border)] bg-[var(--bg)] p-4">
+        <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-tertiary)] lowercase tracking-widest">stack</span>
+        <p class="font-display font-semibold text-[var(--text-lg)] mt-2">Python · Django · DRF</p>
+      </div>
+      <div class="border border-[var(--border)] bg-[var(--bg)] p-4">
+        <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-tertiary)] lowercase tracking-widest">foco</span>
+        <p class="font-display font-semibold text-[var(--text-lg)] mt-2">APIs · Modelagem · Deploy</p>
+      </div>
+      <div class="border border-[var(--border)] bg-[var(--bg)] p-4 col-span-2 sm:col-span-1">
+        <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-tertiary)] lowercase tracking-widest">estilo</span>
+        <p class="font-display font-semibold text-[var(--text-lg)] mt-2">Código limpo · curiosidade</p>
+      </div>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,16 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "agent": {
+    "portfolio-builder": {
+      "description": "Recria um portfólio pessoal a partir de um index.html de referência, preservando a identidade visual do template e substituindo apenas nome, textos, projetos, tecnologias e redes sociais.",
+      "mode": "subagent"
+    }
+  },
+  "mcp": {
+    "playwright": {
+      "type": "local",
+      "command": ["npx", "-y", "@playwright/mcp"],
+      "enabled": true
+    }
+  }
+}

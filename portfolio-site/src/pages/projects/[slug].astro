@@ -1,0 +1,129 @@
+---
+import { getCollection, render } from 'astro:content';
+import BaseLayout from '~/layouts/BaseLayout.astro';
+import { SITE } from '~/consts';
+
+export async function getStaticPaths() {
+  const projects = await getCollection('projects');
+  return projects.map((project) => ({
+    params: { slug: project.id },
+    props: { project },
+  }));
+}
+
+const { project } = Astro.props;
+const { Content } = await render(project);
+const { data } = project;
+---
+
+<BaseLayout
+  title={`${data.title} — ${SITE.name}`}
+  description={data.summary}
+>
+  <article class="section">
+    <div class="container-page max-w-3xl">
+      <a
+        href="/#projects"
+        class="inline-flex items-center gap-1 text-sm text-fg-muted hover:text-fg transition-colors reveal"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="14"
+          height="14"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+        Voltar para projetos
+      </a>
+
+      <header class="mt-8 flex flex-col gap-4 reveal">
+        <p class="eyebrow">
+          {data.role && <span>{data.role} &middot; </span>}
+          {data.year && <span>{data.year}</span>}
+        </p>
+        <h1
+          class="font-display text-3xl sm:text-4xl font-semibold tracking-tight text-balance"
+        >
+          {data.title}
+        </h1>
+        <p class="text-lg text-fg-muted text-balance">{data.summary}</p>
+      </header>
+
+      <dl class="mt-10 grid gap-6 sm:grid-cols-2 reveal">
+        <div>
+          <dt class="eyebrow">Stack</dt>
+          <dd class="mt-2 flex flex-wrap gap-1.5">
+            {
+              data.stack.map((tech) => (
+                <span class="font-mono text-xs px-2 py-1 rounded border border-border bg-surface dark:bg-surface-dark">
+                  {tech}
+                </span>
+              ))
+            }
+          </dd>
+        </div>
+        <div>
+          <dt class="eyebrow">Links</dt>
+          <dd class="mt-2 flex flex-col gap-1.5 text-sm">
+            {
+              data.github && (
+                <a
+                  href={data.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link-underline"
+                >
+                  GitHub →
+                </a>
+              )
+            }
+            {
+              data.demo && (
+                <a
+                  href={data.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="link-underline"
+                >
+                  Demo ao vivo →
+                </a>
+              )
+            }
+            {
+              !data.github && !data.demo && (
+                <span class="text-fg-muted">Repositório privado</span>
+              )
+            }
+          </dd>
+        </div>
+      </dl>
+
+      <div class="prose prose-lg dark:prose-invert mt-12 max-w-none reveal">
+        <Content />
+      </div>
+
+      <footer class="mt-16 pt-8 border-t border-border flex flex-wrap items-center justify-between gap-3">
+        <a
+          href="/#projects"
+          class="btn-ghost"
+        >
+          ← Todos os projetos
+        </a>
+        <a
+          href={`mailto:${SITE.email}`}
+          class="btn-secondary"
+        >
+          Conversar sobre algo
+        </a>
+      </footer>
+    </div>
+  </article>
+</BaseLayout>

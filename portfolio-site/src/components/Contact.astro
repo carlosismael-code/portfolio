@@ -1,0 +1,61 @@
+---
+import SectionHeading from '~/components/SectionHeading.astro';
+import { SITE } from '~/consts';
+---
+
+<section id="contact" class="page-section page-section--alt border-t border-[var(--border)]" aria-labelledby="contact-title">
+  <div class="container-page relative">
+    <span class="section-number" aria-hidden="true"><span>08</span></span>
+
+    <SectionHeading
+      title="Vamos conversar"
+      description="Procuro oportunidade como back-end júnior. Manda email ou me chama nas redes — respondo rápido."
+      align="center"
+      number="08"
+    />
+
+    <div class="flex flex-col items-center gap-6">
+      <a
+        href={`mailto:${SITE.email}`}
+        class="btn btn--primary btn--large"
+        aria-label={`Enviar email para ${SITE.email}`}
+      >
+        {SITE.email}
+      </a>
+
+      <div class="flex flex-wrap items-center justify-center gap-3 font-mono text-[var(--text-xs)]">
+        <a
+          href={SITE.social.whatsapp}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--secondary"
+        >
+          whatsapp
+        </a>
+        <a
+          href={SITE.social.linkedin}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--secondary"
+        >
+          linkedin
+        </a>
+        <a
+          href={SITE.social.github}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="btn btn--secondary"
+        >
+          github
+        </a>
+      </div>
+
+      {SITE.status.available && (
+        <p class="mt-4 font-mono text-[var(--text-xs)] text-[var(--fg-secondary)] lowercase reveal">
+          <span class="inline-block h-1.5 w-1.5 rounded-full bg-[var(--status.ok)] mr-2 align-middle" aria-hidden="true"></span>
+          tempo médio de resposta: <span class="text-[var(--fg)]">menos de 24h</span> em dias úteis
+        </p>
+      )}
+    </div>
+  </div>
+</section>

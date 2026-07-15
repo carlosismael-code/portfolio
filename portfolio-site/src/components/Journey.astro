@@ -1,0 +1,90 @@
+---
+import SectionHeading from '~/components/SectionHeading.astro';
+
+interface TimelineItem {
+  type: 'education' | 'project';
+  title: string;
+  org: string;
+  period: string;
+  description: string;
+  tags?: string[];
+}
+
+const items: TimelineItem[] = [
+  {
+    type: 'education',
+    title: 'Formação autodidata + faculdade em curso',
+    org: 'Estudo contínuo',
+    period: '2025 — atual',
+    description:
+      'Foco em desenvolvimento back-end com Python, Django e DRF. Leio documentação oficial, faço cursos curtos, contribuo em projetos pessoais e estudo conceitos de banco de dados, APIs REST, autenticação e deploy.',
+    tags: ['Python', 'Django', 'DRF', 'SQL', 'Docker', 'Git'],
+  },
+  {
+    type: 'project',
+    title: 'Projetos reais no GitHub',
+    org: 'Independente',
+    period: '2025 — atual',
+    description:
+      'SmartFinance, FinanPy, Flix (app + API) e Carros: cada um virou um case com problema, decisão técnica, deploy e o que aprendi. Stack comum: Django, Django REST Framework, PostgreSQL, Docker.',
+    tags: ['Django', 'DRF', 'PostgreSQL', 'Docker', 'Streamlit'],
+  },
+];
+---
+
+<section id="journey" class="page-section border-t border-[var(--border)]" aria-labelledby="journey-title">
+  <div class="container-page relative">
+    <span class="section-number" aria-hidden="true"><span>05</span></span>
+
+    <SectionHeading
+      title="Trajetória"
+      description="Os marcos que moldaram meu trabalho até aqui."
+      number="05"
+    />
+
+    <ol class="relative space-y-10 border-l border-[var(--border)] pl-6 sm:pl-8 reveal-stagger">
+      {
+        items.map((item) => (
+          <li class="relative">
+            <span
+              class:list={[
+                'absolute -left-[33px] sm:-left-[41px] top-1.5 flex h-4 w-4 items-center justify-center rounded-full border-2',
+                item.type === 'education'
+                  ? 'border-[var(--accent)] bg-[var(--bg)]'
+                  : 'border-[var(--orange)] bg-[var(--bg)]',
+              ]}
+              aria-hidden="true"
+            />
+            <div class="flex flex-col gap-2">
+              <div class="flex flex-wrap items-center gap-x-3 gap-y-1">
+                <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-secondary)] lowercase tracking-widest">
+                  {item.period}
+                </span>
+                <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-secondary)]">·</span>
+                <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-secondary)] lowercase tracking-widest">
+                  {item.type === 'education' ? 'formação' : 'projetos'}
+                </span>
+              </div>
+              <h3 class="font-display font-semibold text-[var(--text-lg)] tracking-tightish">
+                {item.title}
+              </h3>
+              <p class="font-mono text-[var(--text-xs)] text-[var(--fg-secondary)] lowercase">
+                {item.org}
+              </p>
+              <p class="text-[var(--fg-secondary)] leading-relaxed max-w-2xl font-display">
+                {item.description}
+              </p>
+              {item.tags && (
+                <ul class="flex flex-wrap gap-1.5">
+                  {item.tags.map((tag) => (
+                    <li class="work-tag">{tag}</li>
+                  ))}
+                </ul>
+              )}
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>

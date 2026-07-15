@@ -1,0 +1,72 @@
+---
+import SectionHeading from '~/components/SectionHeading.astro';
+import { TECH_STACK, type TechItem } from '~/data/tech';
+
+const grouped = TECH_STACK.reduce<Record<string, TechItem[]>>((acc, item) => {
+  acc[item.category] = acc[item.category] ?? [];
+  acc[item.category].push(item);
+  return acc;
+}, {});
+
+const order = ['Backend', 'Database', 'DevOps', 'Ferramentas'] as const;
+const labels: Record<string, string> = {
+  Backend: 'Linguagem & Framework',
+  Database: 'Banco de Dados',
+  DevOps: 'DevOps & Infra',
+  Ferramentas: 'Ferramentas',
+};
+---
+
+<section id="stack" class="page-section page-section--alt border-t border-[var(--border)]" aria-labelledby="stack-title">
+  <div class="container-page relative">
+    <span class="section-number" aria-hidden="true"><span>04</span></span>
+
+    <SectionHeading
+      title="Stack"
+      description="Ferramentas que uso no dia a dia para construir APIs, modelar dados e colocar serviços no ar."
+      number="04"
+    />
+
+    <div class="space-y-12">
+      {
+        order.map((category) => {
+          const items = grouped[category];
+          if (!items?.length) return null;
+          return (
+            <div class="reveal">
+              <h3 class="font-mono text-[var(--text-xs)] text-[var(--fg-secondary)] tracking-wide uppercase mb-4">{labels[category]}</h3>
+              <ul class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-3">
+                {items.map((item) => (
+                  <li>
+                    <a
+                      href={item.url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      class="group flex items-center gap-3 border border-[var(--border)] bg-[var(--bg)] p-4 hover:border-[var(--accent)] transition-colors no-underline"
+                      style="transition-duration: var(--motion-fast)"
+                      aria-label={`${item.name} (site oficial)`}
+                    >
+                      <span
+                        class="flex h-9 w-9 shrink-0 items-center justify-center text-[var(--fg-secondary)] group-hover:text-[var(--accent)] transition-colors"
+                        style="transition-duration: var(--motion-fast)"
+                        set:html={item.icon}
+                      />
+                      <span class="flex flex-col">
+                        <span class="text-sm font-medium leading-tight text-[var(--fg)]">{item.name}</span>
+                        {item.note && (
+                          <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-secondary)] leading-tight lowercase">
+                            {item.note}
+                          </span>
+                        )}
+                      </span>
+                    </a>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          );
+        })
+      }
+    </div>
+  </div>
+</section>

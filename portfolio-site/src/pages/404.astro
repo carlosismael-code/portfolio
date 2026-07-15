@@ -1,0 +1,21 @@
+---
+import BaseLayout from '~/layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="404 — Página não encontrada" noindex>
+  <section class="section">
+    <div class="container-page max-w-xl text-center flex flex-col items-center gap-4">
+      <p class="eyebrow">// 404</p>
+      <h1 class="font-display text-5xl sm:text-6xl font-semibold tracking-tight">
+        Página não encontrada
+      </h1>
+      <p class="text-fg-muted">
+        O link que você seguiu pode estar quebrado, ou a página foi removida.
+      </p>
+      <div class="flex gap-3 mt-4">
+        <a href="/" class="btn-primary">Voltar para o início</a>
+        <a href="/#projects" class="btn-secondary">Ver projetos</a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

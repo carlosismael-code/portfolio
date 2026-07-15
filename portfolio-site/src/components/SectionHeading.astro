@@ -1,0 +1,48 @@
+---
+interface Props {
+  eyebrow?: string;
+  title: string;
+  description?: string;
+  align?: 'left' | 'center';
+  level?: 2 | 3;
+  number?: string;
+}
+
+const { eyebrow, title, description, align = 'left', level = 2, number } = Astro.props;
+const Tag = `h${level}` as 'h2' | 'h3';
+---
+
+<header
+  class:list={[
+    'relative z-10 mb-12 flex flex-col gap-3',
+    align === 'center' ? 'items-center text-center' : 'items-start',
+  ]}
+>
+  {eyebrow && <p class="system-annotation">{eyebrow}</p>}
+  <Tag
+    class:list={[
+      'font-display font-semibold tracking-tightish text-balance text-[var(--text-xl)]',
+    ]}
+  >
+    {title}
+  </Tag>
+  {
+    description && (
+      <p
+        class:list={[
+          'font-mono text-[var(--text-sm)] text-[var(--fg-secondary)] max-w-xl leading-relaxed',
+          align === 'center' && 'mx-auto',
+        ]}
+      >
+        {description}
+      </p>
+    )
+  }
+  {
+    number && (
+      <span class="section-number" aria-hidden="true">
+        <span>{number}</span>
+      </span>
+    )
+  }
+</header>

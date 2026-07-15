@@ -1,0 +1,74 @@
+---
+import { SITE } from '~/consts';
+---
+
+<section
+  class="relative min-h-[50vh] min-h-[50dvh] flex items-center overflow-hidden pt-[calc(var(--top-nav-height)+var(--space-7))] pb-[calc(var(--space-8)*2)]"
+  aria-labelledby="hero-title"
+>
+  <div class="dot-grid" aria-hidden="true">
+    <div class="dot-grid__pattern"></div>
+  </div>
+  <div class="data-rain" aria-hidden="true"></div>
+
+  <div class="container-page relative grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <div class="relative z-10">
+      <h1
+        id="hero-title"
+        class="font-display font-semibold tracking-tighter2 text-[var(--text-xxl)] leading-[1.05] text-balance max-w-2xl reveal"
+        style="margin-bottom: var(--space-4)"
+      >
+        {SITE.tagline}
+      </h1>
+
+      <p
+        class="font-mono text-[var(--text-sm)] text-[var(--fg-secondary)] max-w-md leading-relaxed reveal"
+        style="margin-bottom: var(--space-6)"
+      >
+        {SITE.description}
+      </p>
+
+      <div class="flex flex-wrap items-center gap-3 reveal">
+        <a href="#projects" class="btn btn--primary">
+          ver projetos
+        </a>
+        <a href={`mailto:${SITE.email}`} class="btn btn--secondary">
+          entrar em contato
+        </a>
+      </div>
+    </div>
+
+    <div class="relative z-10 hidden lg:flex justify-center">
+      <div class="relative w-full max-w-sm aspect-[3/4] border border-[var(--border)] bg-[var(--bg-alt)] overflow-hidden group">
+        <img
+          src="/photo.jpg"
+          alt={`Foto de ${SITE.name}`}
+          class="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+          loading="eager"
+          decoding="async"
+          width="480"
+          height="640"
+        />
+        <div class="absolute inset-0 bg-gradient-to-t from-[var(--bg)]/40 via-transparent to-transparent pointer-events-none"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="absolute bottom-8 left-0 right-0 flex flex-col items-center gap-2 z-10 reveal">
+    <span class="font-mono text-[var(--text-2xs)] text-[var(--fg-tertiary)] lowercase tracking-widest">scroll</span>
+    <svg
+      width="12"
+      height="12"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="text-[var(--fg-tertiary)] animate-bounce"
+      aria-hidden="true"
+    >
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+</section>
