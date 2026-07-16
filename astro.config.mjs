@@ -6,7 +6,6 @@ import sitemap from '@astrojs/sitemap';
 
 export default defineConfig({
   site: 'https://ismaelcarlos.dev',
-  base: './',
   integrations: [
     tailwind({ applyBaseStyles: false }),
     mdx(),
