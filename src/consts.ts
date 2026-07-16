@@ -13,7 +13,7 @@ export const SITE = {
   email: 'carlosismaael974@gmail.com',
   social: {
     github: 'https://github.com/carlosismael-code',
-    linkedin: 'https://linkedin.com/in/ismael-carlos',
+    linkedin:  'https://www.linkedin.com/in/ismael-carlos-7b6212236',
     whatsapp: 'https://wa.me/5531999409582',
   },
   url: 'https://ismaelcarlos.dev',
